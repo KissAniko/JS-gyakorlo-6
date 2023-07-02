@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gombok, űrlapok</title>
+</head>
+<body>
+    <input type="button" id = "oke" value="OK">
+    <button onclick = "gomb()">AZ "OK" gomb letiltása</button>
+</body>
+
+<script>
+    function gomb(){
+document.getElementById("oke").disabled = true;
+    }
+</script>
+
+<!-- ---------------------TÁRGY NEVE, GOMB TÍPUSA, ÉRTÉKE, SZÖVEG ÉS KARAKTERKÓD KIÍRATÁSA, WEBcím megjelenítése------------------ -->
+
+<hr>
+<body>
+    <form action="tenger napszemüvegben.jpg" id="frm1" accept-charset="ISO-8859-1">
+        <button id="btn1" name="Subject: Vízpart" type="button" value="5*">Tenger</button>
+    </form>
+    <p>A tengerre kattintva, meglátjuk mi van alatta</p>
+    <p>A Próbáld ki! gombra kattintva, megtudjuk a tárgy nevét, a gomb típusát, értékét és a gombon szerepelt szöveget</p>
+    <button onclick = "gomb2()" >Próbáld ki!</button>
+    <br>
+    <button onclick = "gomb6()" >Katt ide! -- > karakterkód </button>
+    <br>
+    <button onclick = "gomb7()">Katt ide -- > web-cím</button>
+    <p id = "demo1"></p>
+    <p id = "demo6"></p>   
+    <p id = demo7></p> 
+
+    <script>
+        function gomb2(){
+        let n = document.getElementById("btn1").name;  //neve
+        let t = document.getElementById("btn1").type; //típusa
+        let v = document.getElementById("btn1").value;  //értéke
+        let i = document.getElementById("btn1").innerHTML;  // a gombon szerepelt szöveg
+        let g = document.getElementById("btn1").acceptCharset;   // az űrlap elfogadó karakterkészlete (kódja: ISO-8859-1)
+        let a = document.getElementById("btn1").action;   // az űrlap műveleti attribútuma értékének megjelenítése ( kiírja a www... címet)
+
+        // a type-nak lehet subject, button, stb. Az " " -be írtak nem bővíthetők.
+
+        document.getElementById("demo1").innerHTML = n + "<br>" + "Típusa: " + t 
+                                                     +"<br>"+ "Értéke: " + v 
+                                                     + "<br>" + "A gombon szerepelt szöveg: " + i;
+                                                                                                        
+        }
+         //Karakterkód:
+        function gomb6(){
+            let g = document.getElementById("btn1").acceptCharset;
+            document.getElementById("demo6").innerHTML = g;              // Valamiért nem értelmezi(undefined), de legalább reagál.
+        }
+        // WEB cím: 
+        function gomb7() {
+           var x = document.getElementById("frm1").action;
+           document.getElementById("demo7").innerHTML = x;               // furi fájlt ad vissza, de működik
+        }
+    </script>
+    </body>
+    <hr>
+
+<!-- -----------------------------NÉV KITÖLTÉSE és MENTÉSE (valahova)------------------------------------------- -->
+   
+    <body>      
+      <form action="/action_page.php" id = "törzs">   <!--  ez a W3 school-nak egy oldala, ahol lehetne olvasni a fájlt -->
+          Keresztnév: <input type="text" name="firstName">
+          <br>
+          Vezetéknév: <input type="text" name = "lastName">
+          <br><br>
+          <input type = "button" onclick="gomb3()" value = "Küldés">
+           <input type="button" onclick = "gomb4()" value = "Visszaállítas">
+           <input type="button" onclick = "gomb5()" value = "Megjelenít">
+      </form>
+    <p id = "demo4"></p>
+    <script>
+        function gomb3(){
+            document.getElementById("törzs").submit();  // Beküldés
+        }
+        function gomb4(){
+            document.getElementById("törzs").reset();   // Törlés, visszaállítás --> visszaállítja az ürlapot 
+        }
+
+ //  AZ ÜRLAP ELEMEINEK MEGJELENÍTÉSE    
+
+        function gomb5(){
+            let x = document.getElementById("törzs");
+            let i;
+            let szoveg = "";
+            for (i = 0; i < x.length; i++){
+                szoveg += x.elements[i].value + "<br>";
+            }
+            document.getElementById("demo4").innerHTML = szoveg;            
+        }
+
+    </script>
+    </body>
+
+
+
+
+
+</html>
